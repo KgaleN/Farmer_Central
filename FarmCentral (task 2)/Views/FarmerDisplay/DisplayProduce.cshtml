@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FarmCentral__task_2_.Models.Produce>
+
+<body style="background:#EAE1E1">
+    <h1>List of Produce</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Produce
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Grade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    unit of measurement
+                </th>
+                <th>
+                    Date Packed
+                </th>
+                <th>
+                    Days of shelf life
+                </th>
+                <th>
+                  rotten status
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProduceName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producetype)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PackedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShelfLife)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsRotten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <form asp-action="AddProduce">
+    <input style="width:5cm; position:absolute; left:9%;" id="btnSubmit" name="produce button" type="submit" value="Add Produce" class="btn btn-primary" onclick="deleteSignupInput()" />
+    </form>
+</body>

@@ -1,0 +1,93 @@
+﻿
+<body style="background:#EAE1E1">
+    <h1 style="position:absolute; left:60%; ">
+    Add produce
+    </h1>
+    <img src="\Img\veg+fruits.jpg" style="width:57%;height:100%; position:absolute; left:0cm; top:1.5cm" class="img-fluid">
+    <form asp-action="SaveProduce">
+
+
+    <div style="position:absolute; left:60%; bottom:70%;">
+        <label for="prodType">Type of produce:</label>
+        <br />
+            <select style="border-radius:3cm;background-color: #cbb4b4;width:3.5cm; height:0.85cm;border:thin;" name="prodType" id="prodType" onkeyup="EnableDisableAddBtn(this, prodName, prodQlty, prodAmt, prodUnit, packageDate, shelfLife)">
+            <option value="Fruit">fruit</option>
+            <option value="Vegitable">vegitable</option>
+        </select>
+        </div>
+  
+
+    <div style="position:absolute; left:60%; bottom:59%">
+        <label for="prodName">Produce:</label>
+        <br />
+            <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; width:6cm; height:0.85cm;" id="prodName" type="text" name="prodName" placeholder="Eg. apples" onkeyup="EnableDisableAddBtn(prodType, this, prodQlty, prodAmt, prodUnit, packageDate, shelfLife)">
+    </div>
+
+    <div style="position:absolute; left:60%;  bottom:48%">
+        <label for="prodQlty">Quality:</label>
+        <br />
+            <select style="border-radius:3cm;background-color: #cbb4b4;width:3.5cm; height:0.85cm;border:thin;" name="prodQlty" id="prodQlty" onkeyup="EnableDisableAddBtn(prodType, prodName, this, prodAmt, prodUnit, packageDate, shelfLife)">
+            <option value="Class 1">class 1</option>
+            <option value="Class 2">class 2</option>
+            <option value="Class 3">class 3</option>
+            <option value="Lowest class">lowest class</option>
+        </select>
+    </div>
+
+    <div style="position:absolute;  left:60%;  bottom:37%">
+        <label for="prodAmt">
+            Amount:
+        </label>
+
+
+
+        <br />
+            <input style="border-radius:3cm;background-color: #cbb4b4;width:3.5cm; height:0.85cm; border:thin;" id="prodAmt" type="number" name="prodAmt" onkeyup="EnableDisableAddBtn(prodType, prodName, prodQlty, this, prodUnit, packageDate, shelfLife)">
+
+            <select style="border-radius:3cm;background-color: #cbb4b4;width:3.5cm; height:0.85cm;border:thin;" name="prodUnit" id="prodUnit" onkeyup="EnableDisableAddBtn(prodType, prodName, prodQlty, prodAmt, this, packageDate, shelfLife)">
+            <option value="Kilo grams">kg</option>
+            <option value="Grams">g</option>
+            <option value="Milli grams">mg</option>
+            <option value="Per produce">per produce</option>
+        </select>
+    </div>
+
+    <div style="position:absolute; left:60%; bottom:26%">
+        <label for="packageDate">Package date:</label>
+        <br/>
+            <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; width:6cm; height:0.85cm;" id="packageDate" type="date" name="packageDate" onkeyup="EnableDisableAddBtn(prodType, prodName, prodQlty, prodAmt, prodUnit, this, shelfLife)">
+    </div>
+
+
+    <div style="position:absolute; left:60%; bottom:15%">
+        <label for="shelfLife">Days of shelf life:</label>
+        <br />
+            <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; width:2cm; height:0.85cm;" id="shelfLife" type="number" name="shelfLife" onkeyup="EnableDisableAddBtn(prodType, prodName, prodQlty, prodAmt, prodUnit, packageDate, this)">
+    </div>
+
+
+    <div style="position:absolute; left:69%; top:95%" class="form-group"/>
+
+    <input style="width:5cm; position:absolute; left:9%;" id="btnSubmit" name="loginTell" type="submit" value="Add" class="btn btn-primary" disabled="disabled" onclick="deleteSignupInput()" />
+    </form>
+</body>
+
+
+
+<script type="text/javascript">
+    function EnableDisableAddBtn(prodType, prodName, prodQlty, prodAmt, prodUnit, packageDate, shelfLife)
+    {
+        //Reference the Button.
+        var btnSubmit = document.getElementById("btnSubmit");
+
+        //Verify the TextBox value.
+        if (prodType.value.trim() != "" && prodName.value.trim() != "" && prodQlty.value.trim() != "" && prodAmt.value.trim() != "" && prodUnit.value.trim() != "" && packageDate.value.trim() != "" && shelfLife.value.trim() != "") {
+            //Enable the TextBox when TextBox has value.
+            btnSubmit.disabled = false;
+        } else {
+            //Disable the TextBox when TextBox is empty.
+            btnSubmit.disabled = true;
+        }
+    };
+
+</script>

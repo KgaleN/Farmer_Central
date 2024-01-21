@@ -1,0 +1,62 @@
+﻿@model IEnumerable<FarmCentral__task_2_.Models.Farmer>
+@using FarmCentral__task_2_
+
+<body style="background:#EAE1E1">
+    <h1>Registered farmers </h1>
+    <br/>
+   @foreach (var item in Model)
+    {
+            @if (item.Active == "Y")
+            {  <fieldset style="background-color: #cbb4b4;border-radius: 10px; height: 3cm; width:24cm; position: relative;margin:20px;border:thin;">
+                <form asp-action="DisplayFarmerProduce">
+                    <button id="farmerProfile" style="background-color: #cbb4b4;border-radius: 10px; height: 3cm; width:24cm; position: relative; border:none">
+                <input type="text" id="farmerId" name="farmerId" value="@item.FarmerId" style="visibility:hidden"/>
+                   
+                <div style="position:absolute; left:1cm;top:5px; font-size:xx-large; font-weight:500;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Surname)
+                    <br/>
+                    <label style="font-size:x-large; font-weight:300;">@Html.DisplayFor(modelItem => item.Address)</label>
+                </div>
+                </button>
+                </form>
+                
+                <form asp-action="Disable">
+                    <input type="text" id="farmerId" name="farmerId" value="@item.FarmerId" style="visibility:hidden" />
+                    <input style="width:3.5cm; position:absolute; right:-5cm; top:1cm" id="btnSubmit" name="disable" type="submit" value="Disable account" class="btn btn-primary" />
+                </form>
+            </fieldset>
+            }
+
+            @if (item.Active == "N")
+            {
+            <fieldset style="background-color: #cbb4b4;border-radius: 10px; height: 3cm; width:24cm; position: relative;margin:20px;border:thin;">
+                <form asp-action="DisplayFarmerProduce">
+                    <button id="farmerProfile" style="background-color: #cbb4b4;border-radius: 10px; height: 3cm; width:24cm; position: relative; border:none;" disabled="disabled">
+                        <input type="text" id="farmerId" name="farmerId" value="@item.FarmerId" style="visibility:hidden" />
+
+                        <div style="position:absolute; left:1cm;top:5px; font-size:xx-large; font-weight:500;">
+                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.Surname)
+                            <br />
+                            <label style="font-size:x-large; font-weight:300;">@Html.DisplayFor(modelItem => item.Address)</label>
+                        </div>
+                    </button>
+                </form>
+                <form asp-action="Enable">
+                    <input type="text" id="farmerId" name="farmerId" value="@item.FarmerId" style="visibility:hidden" />
+                    <input style="width:3.5cm; position:absolute; right:-5cm; top:1cm; background-color:red; border:thin" id="btnSubmit" name="enable" type="submit" value="Enable account" class="btn btn-primary" />
+                </form>
+            </fieldset>
+
+               
+            }
+           
+    }
+    <br/>
+    <form asp-action="AddFarmers">
+    <input style="position:absolute; left:9%" id="btnSubmit" name="AddFarmer" type="submit" value="Add farmer" class="btn btn-primary" />
+    </form>
+</body>
+
+

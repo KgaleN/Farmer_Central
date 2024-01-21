@@ -1,0 +1,44 @@
+﻿
+<body style="background:#EAE1E1">
+    <h1 style="position:absolute; left:60%; ">
+        Register Farmer
+    </h1>
+     <form asp-action="SaveFarmer">
+        <img src="\Img\farmerImg.png" style="width:57%;height:100%; position:absolute; left:0cm; top:1.5cm" class="img-fluid">
+
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:60%; top:25%; width:30%;  height:6%;" id="Emails" type="email" name="email" placeholder="Email" onkeyup="EnableDisableRegister(this, Passwords, Names, Surnames, Phone, Address)" />
+        <br>
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:60%; top:38%; width:30%; height:6%" id="Passwords" type="password" name="password" placeholder="Password" onkeyup="EnableDisableRegister(Emails, this, Names, Surnames, Phone, Address)" />
+        <br>
+        <input style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:60%; top:51%; width:15%; height:6%" id="Names" type="text" name="name" placeholder="First Name" onkeyup="EnableDisableRegister(Emails, Passwords, this, Surnames, Phone, Address)" />
+        <input style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:76%; top:51%; width:15%; height:6%" id="Surnames" type="text" name="surname" placeholder="Surname" onkeyup="EnableDisableRegister(Emails, Passwords, Names, this, Phone, Address)" />
+        <br>
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:60%; top:64%; width:30%; height:6%" id="Phone" type="tel" name="phone" placeholder="Phone" onkeyup="EnableDisableRegister(Emails, Passwords, Names, Surnames, this, Address)" />
+        <br>
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:60%; top:77%; width:30%; height:6%" id="Address" type="text" name="address" placeholder="Address" onkeyup="EnableDisableRegister(Emails, Passwords, Names, Surnames, Phone, this)" />
+        <div style="position:absolute; left:69%; top:95%" class="form-group" />
+        <input style="width:5cm; position:absolute; left:45%;" id="btnSubmit" name="rg" type="submit" value="register" class="btn btn-primary" disabled="disabled"/>
+
+   </form>
+    
+</body>
+
+
+  <script type="text/javascript">
+
+    //https://www.aspsnippets.com/Articles/JavaScript-Enable-Button-when-text-is-entered-in-TextBox.aspx#:~:text=JavaScript%20function%20to%20enable%20Button%20when%20text%20is,is%20empty%2C%20the%20Button%20is%20disabled%20using%20JavaScript.
+    function EnableDisableRegister(Emails, Passwords, Names, Surnames, Phone, Address) {
+        //Reference the Button.
+        var btnSubmit = document.getElementById("btnSubmit");
+
+        //Verify the TextBox value.
+        if (Passwords.value.trim() != "" && Emails.value.trim() != "" && Names.value.trim() != "" && Surnames.value.trim() != "" && Phone.value.trim() != "" && Address.value.trim() !=  "") {
+            //Enable the TextBox when TextBox has value.
+            btnSubmit.disabled = false;
+        } else {
+            //Disable the TextBox when TextBox is empty.
+            btnSubmit.disabled = true;
+        }
+    };
+    </script>
+

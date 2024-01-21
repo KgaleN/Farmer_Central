@@ -1,0 +1,140 @@
+﻿@model IEnumerable<FarmCentral__task_2_.Models.Produce>
+
+@{
+    ViewData["Title"] = "DisplayFarmerProduce";
+}
+<body style="background:#EAE1E1">
+<h1>Farmers profile</h1>
+     <br/>
+     
+     <fieldset style="background-color: #cbb4b4;border-radius: 20px;height: 8cm;width: 14cm;position: relative;margin:20px">
+            <div style="width:15cm; height:3cm; position: relative; top: 0.5cm; left: 1cm;font-size:large; font-weight:500;">
+                Name: <label style="font-size:large; font-weight:300;">@ViewBag.Name</label>
+                <br />
+                <br />
+                Suranme: <label style="font-size:large; font-weight:300;">@ViewBag.Surname</label>
+                <br />
+                <br /> 
+                Email: <label style="font-size:large; font-weight:300;">@ViewBag.Email</label>
+                <br/>
+                <br />
+                Tel: <label style="font-size:large; font-weight:300;">@ViewBag.Tel</label>
+                <br/>
+                <br/>
+                Address: <label style="font-size:large; font-weight:300;">@ViewBag.Address</label>
+            </div>
+     </fieldset>
+     <br />
+     <h2>Farmers Produce</h2>
+     <br/>
+        <div> 
+            <form asp-action="Filter">
+            <label for="start_date">Start date:</label> <label for="start_date" style="position:absolute; left:8.5cm">End date:</label> <label style="position:absolute; left:14.6cm" for="prodType">Type of produce:</label>
+            <br/>
+            <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; width:6cm; height:0.85cm;" id="startDates" type="date" name="startDate" onkeyup="EnableDisableBtn(prodTypes, this, endDates)">
+            <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; width:6cm; height:0.85cm;" id="endDates" type="date" name="endDate" onkeyup="EnableDisableBtn(prodTypes, startDates, this">
+            <select style="border-radius:3cm;background-color: #cbb4b4;width:3.5cm; height:0.85cm;border:thin;" name="prodType" id="prodTypes" onkeyup="EnableDisableBtn(this, startDates,endDates)">
+                <option value="Fruit">fruit</option>
+                <option value="Vegitable">vegitable</option>
+            </select>
+                <input style="width:4cm; position:absolute; left:25cm; background-color: #cbb4b4; border-radius:10px; border:none" id="btnSubmit" name="filter" type="submit" value="filter" class="btn btn-primary" />
+            </form>
+            <form asp-action="All">
+            <input style="width:4cm; position:absolute; top:16.7cm; left:30cm; background-color: #cbb4b4; border-radius:10px; border:none" id="btnSubmit" name="filter" type="submit" value="All" class="btn btn-primary" />
+            </form>
+        </div>
+        <br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Produce
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+               Unit of measurement
+            </th>
+            <th>
+               Date Packed
+            </th>
+            <th>
+               Days of shelf life
+            </th>
+            <th>
+               Rotten status
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProduceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producetype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PackedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShelfLife)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRotten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+                    <input type="text" id="farmerId" name="farmerId" value="@item.FarmrId" style="visibility:hidden" />
+}
+    </tbody>
+</table>
+   
+    <br />
+    <form asp-action="DisplayFarmerProfiles">
+       <input style="width:4cm; position:absolute; left:7%;" id="btnSubmit" name="go back" type="submit" value="return" class="btn btn-primary"/>
+    </form>
+
+</body>
+
+<script type="text/javascript">
+
+    //https://www.aspsnippets.com/Articles/JavaScript-Enable-Button-when-text-is-entered-in-TextBox.aspx#:~:text=JavaScript%20function%20to%20enable%20Button%20when%20text%20is,is%20empty%2C%20the%20Button%20is%20disabled%20using%20JavaScript.
+    function EnableDisableBtn(prodTypes, startDates, endDates) {
+        //Reference the Button.
+        var btnSubmit = document.getElementById("btnSubmit");
+
+        //Verify the TextBox value.
+        if (endDates.value.trim() == "" && startDates.value.trim() != "" || endDates.value.trim() != "" && startDates.value.trim() == "") {
+            //Enable the TextBox when TextBox has value.
+            btnSubmit.disabled = true;
+        } else {
+            //Disable the TextBox when TextBox is empty.
+            btnSubmit.disabled = false;
+        }
+    };
+</script>

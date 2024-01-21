@@ -1,0 +1,43 @@
+﻿<body style="background:#EAE1E1">
+    <h1 style="position:absolute; left:45%; ">
+        Login
+    </h1>
+    <form asp-action="SignIn">
+    <p style="font-family:Arial;position:absolute; left:35%; bottom:69%; font-size:xx-large">
+        Welcome to Farmer Central
+    </p>
+        @if (ViewBag.LoginError != null)
+        {
+            <div>
+                <label class="text-danger" style="font-size:medium; font-weight:400; position:absolute;  left:35%; top:32%;">
+                 @ViewBag.LoginError
+                </label>
+            </div>
+        }
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:35%; top:37%; width:30%;  height:6%; " id="UserEmail" type="email" name="email" placeholder="Email" onkeyup="EnableDisableLogin(this,UserPassword)">
+    <br>
+        <input class="text-line" style="border-radius:5cm; border:thin;background-color: #cbb4b4; position:absolute; left:35%; top:52%; width:30%; height:6%" id="UserPassword" type="password" name="password" placeholder="Password" onkeyup="EnableDisableLogin(this,UserEmail)">
+        <div style="position:absolute; left:43%; top:63%" class="form-group"/>
+        <input style="width:5cm; position:absolute; left:45%;" id="btnSubmit" name="loginTell" type="submit" value="login" class="btn btn-primary" disabled="disabled" onclick="deleteSignupInput()"/>      
+       </form>
+</body>
+
+
+
+     <script type="text/javascript">
+
+    //https://www.aspsnippets.com/Articles/JavaScript-Enable-Button-when-text-is-entered-in-TextBox.aspx#:~:text=JavaScript%20function%20to%20enable%20Button%20when%20text%20is,is%20empty%2C%20the%20Button%20is%20disabled%20using%20JavaScript.
+    function EnableDisableLogin(UserEmail, UserPassword) {
+        //Reference the Button.
+        var btnSubmit = document.getElementById("btnSubmit");
+
+        //Verify the TextBox value.
+        if (UserPassword.value.trim() != "" && UserEmail.value.trim() != "") {
+            //Enable the TextBox when TextBox has value.
+            btnSubmit.disabled = false;
+        } else {
+            //Disable the TextBox when TextBox is empty.
+            btnSubmit.disabled = true;
+        }
+    };
+    </script>
